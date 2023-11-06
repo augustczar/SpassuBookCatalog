@@ -3,7 +3,7 @@ server:
   
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/catalog-book
+    url: jdbc:postgresql://localhost:5432/catalog-author
     username: admin
     password: PO_postgres
   jpa:
