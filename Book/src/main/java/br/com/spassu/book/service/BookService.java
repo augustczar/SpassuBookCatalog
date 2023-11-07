@@ -1,5 +1,6 @@
 package br.com.spassu.book.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -12,5 +13,9 @@ public interface BookService {
 	Optional<BookModel> findByTitle(String title);
 	
 	Optional<BookModel> findById(UUID bookId);
+
+	void delete(BookModel bookModel);
+
+	List<BookModel> findAll();
 
 }

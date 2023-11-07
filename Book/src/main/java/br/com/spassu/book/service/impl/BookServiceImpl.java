@@ -1,5 +1,6 @@
 package br.com.spassu.book.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,5 +38,16 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public Optional<BookModel> findById(UUID bookId) {
 		return bookRepository.findById(bookId);
+	}
+
+	@Override
+	public void delete(BookModel bookModel) {
+		bookRepository.delete(bookModel);
+		
+	}
+
+	@Override
+	public List<BookModel> findAll() {
+		return bookRepository.findAll();
 	}
 }
