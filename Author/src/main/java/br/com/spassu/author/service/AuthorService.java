@@ -1,5 +1,6 @@
 package br.com.spassu.author.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,5 +15,7 @@ public interface AuthorService {
 	Optional<AuthorModel> findById(UUID authorId);
 
 	void delete(AuthorModel authorModel);
+
+	List<AuthorModel> findAll();
 
 }

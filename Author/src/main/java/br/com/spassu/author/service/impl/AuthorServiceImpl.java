@@ -1,5 +1,6 @@
 package br.com.spassu.author.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -42,6 +43,11 @@ public class AuthorServiceImpl implements AuthorService {
 	public void delete(AuthorModel authorModel) {
 		authorRepository.delete(authorModel);
 		
+	}
+
+	@Override
+	public List<AuthorModel> findAll() {
+		return authorRepository.findAll();
 	}
 
 }

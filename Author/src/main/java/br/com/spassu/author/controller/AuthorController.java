@@ -1,5 +1,6 @@
 package br.com.spassu.author.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -32,14 +33,12 @@ public class AuthorController {
 	@Autowired
 	AuthorService authorService;
 
-/*
- * 	@GetMapping
-	public ResponseEntity<AuthorModel> getAllAuthors(@RequestParam(required = false) UUID authorID) {
-		authorModel = authorService.findAll();
-		
-		return "Ok";
+ 	@GetMapping
+	public ResponseEntity<List<AuthorModel>> getAllAuthors() {
+			
+		return ResponseEntity.status(HttpStatus.OK).body(authorService.findAll());
 	}
- */
+
 
 	@PostMapping
 	public ResponseEntity<Object> saveBook(@RequestBody @Valid AuthorDto authorDto) throws Exception {
