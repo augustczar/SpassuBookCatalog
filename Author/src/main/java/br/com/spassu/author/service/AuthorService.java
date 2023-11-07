@@ -13,4 +13,6 @@ public interface AuthorService {
 
 	Optional<AuthorModel> findById(UUID authorId);
 
+	void delete(AuthorModel authorModel);
+
 }

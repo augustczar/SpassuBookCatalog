@@ -3,6 +3,8 @@ package br.com.spassu.author.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "AUTHOR")
 public class AuthorModel implements Serializable {
