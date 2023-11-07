@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.spassu.author.dtos.AuthorDto;
 import br.com.spassu.author.model.AuthorModel;
 import br.com.spassu.author.service.AuthorService;
-import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -32,16 +33,22 @@ public class AuthorController {
 	
 	@Autowired
 	AuthorService authorService;
-
+	
  	@GetMapping
 	public ResponseEntity<List<AuthorModel>> getAllAuthors() {
 			
 		return ResponseEntity.status(HttpStatus.OK).body(authorService.findAll());
 	}
 
-
 	@PostMapping
 	public ResponseEntity<Object> saveBook(@RequestBody @Valid AuthorDto authorDto) throws Exception {
+		var authorName = authorService.findByName(authorDto.getName());
+	
+		if (authorName.get().getName().isEmpty()) {
+			log.warn("authorName {} you are already registered!", authorDto.getName());
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: authorName you are already registered!");
+		}
+
 		var authorModel = new AuthorModel();
 		BeanUtils.copyProperties(authorDto, authorModel);
 		authorService.save(authorModel);

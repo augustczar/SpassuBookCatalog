@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +14,21 @@ import br.com.spassu.author.repository.AuthorRepository;
 import br.com.spassu.author.service.AuthorService;
 
 @Service
-public class AuthorServiceImpl implements AuthorService {
+public class AuthorServiceImpl implements AuthorService{
 
 	@Autowired
 	AuthorRepository authorRepository;
-	
+
+
+  	@Override
+	public Optional<AuthorModel> findByName(String name) {
+		Optional<AuthorModel> existedAuthor = authorRepository.findByName(name);
+		return Optional.of(existedAuthor.orElse(null));
+	}
+
 	@Override
 	public AuthorModel save(AuthorModel authorModel) throws Exception {
-		Optional<AuthorModel> existedAuthor  = authorRepository.findByAuthor(authorModel.getName()); 
+		Optional<AuthorModel> existedAuthor  = authorRepository.findByName(authorModel.getName()); 
 		
 		if (existedAuthor.isPresent()) {
 			throw new Exception("Author já existe!", null);
@@ -29,25 +38,18 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public Optional<AuthorModel> findByAuthor(String name) {
-		Optional<AuthorModel> existedAuthor = authorRepository.findByAuthor(name);
-		return Optional.of(existedAuthor.orElse(null));
-	}
-
-	@Override
 	public Optional<AuthorModel> findById(UUID authorId) {
 		return authorRepository.findById(authorId);
 	}
 
+	@Transactional
 	@Override
 	public void delete(AuthorModel authorModel) {
 		authorRepository.delete(authorModel);
-		
 	}
 
 	@Override
 	public List<AuthorModel> findAll() {
 		return authorRepository.findAll();
 	}
-
 }

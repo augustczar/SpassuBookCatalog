@@ -9,6 +9,6 @@ import br.com.spassu.author.model.AuthorModel;
 
 public interface AuthorRepository extends JpaRepository<AuthorModel, UUID> {
 
-	Optional<AuthorModel> findByAuthor(String name);
+	Optional<AuthorModel> findByName(String name);
 
 }

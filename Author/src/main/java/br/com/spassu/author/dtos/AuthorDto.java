@@ -1,6 +1,7 @@
 package br.com.spassu.author.dtos;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

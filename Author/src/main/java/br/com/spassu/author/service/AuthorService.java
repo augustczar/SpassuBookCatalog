@@ -10,7 +10,7 @@ public interface AuthorService {
 
 	AuthorModel save(AuthorModel authorModel) throws Exception;
 
-	Optional<AuthorModel> findByAuthor(String name);
+	Optional<AuthorModel> findByName(String name);
 
 	Optional<AuthorModel> findById(UUID authorId);
 

@@ -36,7 +36,7 @@ class AuthorServiceTest {
 		authorModel.setAuthorId(UUID.randomUUID());
 		authorModel.setName(NAME);
 
-		Mockito.when(authorRepository.findByAuthor(NAME))
+		Mockito.when(authorRepository.findByName(NAME))
 				.thenReturn(Optional.empty());
 		
 	}
@@ -51,7 +51,7 @@ class AuthorServiceTest {
 	@Test
 	void DoNotSaveAuthorWithTheSameName() {
 		Assertions.assertThrows(Exception.class, () -> {
-			authorService.findByAuthor(NAME);
+			authorService.findByName(NAME);
 			 });
 		Assertions.assertNull(null, "Author já existe!");
 		

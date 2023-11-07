@@ -47,7 +47,7 @@ public class AuthorControllerTest {
 		authorModel.setAuthorId(UUID.randomUUID());
 		authorModel.setName(NAME);
 
-		Mockito.when(authorRepository.findByAuthor(NAME))
+		Mockito.when(authorRepository.findByName(NAME))
 				.thenReturn(Optional.empty());
 	}
 	
