@@ -33,9 +33,9 @@ class BookServiceTest {
 	
 	private static String PUBLISHING_COMPANY = "Alta Books";
 	
-	private static Integer EDITION = 2009;
+	private static Integer EDITION = 0001;
 	
-	private static String YEAR_PUBLICATION;
+	private static String YEAR_PUBLICATION = "2009";
 	 
 	private static BigDecimal PRICE = new BigDecimal(101.69);
 

@@ -25,7 +25,7 @@ public class BookDto {
 	@NotBlank
 	private String publishingCompany;
 	
-	@NotBlank
+	@NotNull
 	private Integer edition;
 	
 	@NotBlank

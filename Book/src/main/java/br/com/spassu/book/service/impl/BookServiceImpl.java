@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService{
 	public Optional<BookModel> findByTitle(String title) {
 		
 		Optional<BookModel> existedBook = bookRepository.findByTitle(title);
-		return Optional.of(existedBook.orElse(null));
+		return existedBook;
 	}
 
 	@Override
