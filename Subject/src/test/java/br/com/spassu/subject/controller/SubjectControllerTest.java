@@ -47,7 +47,7 @@ class SubjectControllerTest {
 		subjectModel.setSubjectId(UUID.randomUUID());
 		subjectModel.setDescription(DESCRIPTION);
 
-		Mockito.when(subjectRepository.findBySubject(DESCRIPTION))
+		Mockito.when(subjectRepository.findByDescription(DESCRIPTION))
 				.thenReturn(Optional.empty());
 	}
 	

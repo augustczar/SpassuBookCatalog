@@ -9,6 +9,6 @@ import br.com.spassu.subject.model.SubjectModel;
 
 public interface SubjectRepository extends JpaRepository<SubjectModel, UUID> {
 
-	Optional<SubjectModel> findBySubject(String description);
+	Optional<SubjectModel> findByDescription(String description);
 
 }

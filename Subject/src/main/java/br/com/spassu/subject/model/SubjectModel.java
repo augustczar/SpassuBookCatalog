@@ -3,12 +3,13 @@ package br.com.spassu.subject.model;
 import java.io.Serializable;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,5 +34,5 @@ public class SubjectModel implements Serializable{
 	private UUID subjectId;
 	
 	@Column(nullable = false, unique = true, length = 20)
-	private String Description;
+	private String description;
 }

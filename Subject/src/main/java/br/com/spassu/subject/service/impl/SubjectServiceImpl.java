@@ -1,5 +1,6 @@
 package br.com.spassu.subject.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Override
 	public SubjectModel save(SubjectModel subjectModel) throws Exception {
-		Optional<SubjectModel> existedSubject  = subjectRepository.findBySubject(subjectModel.getDescription()); 
+		Optional<SubjectModel> existedSubject  = subjectRepository.findByDescription(subjectModel.getDescription()); 
 		
 		if (existedSubject.isPresent()) {
 			throw new Exception("Subject já existe!", null);
@@ -27,14 +28,24 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public Optional<SubjectModel> findBySubject(String description) {
-		Optional<SubjectModel> existedSubject = subjectRepository.findBySubject(description);
+	public Optional<SubjectModel> findByDescription(String description) {
+		Optional<SubjectModel> existedSubject = subjectRepository.findByDescription(description);
 		return Optional.of(existedSubject.orElse(null));
 	}
 
 	@Override
 	public Optional<SubjectModel> findById(UUID sibjectId) {
 		return subjectRepository.findById(sibjectId);
+	}
+
+	@Override
+	public void delete(SubjectModel subjectModel) {
+		subjectRepository.delete(subjectModel);
+	}
+
+	@Override
+	public List<SubjectModel> findAll() {
+		return subjectRepository.findAll();
 	}
 
 }

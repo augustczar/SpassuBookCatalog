@@ -36,7 +36,7 @@ class SubjectServiceTest {
 		subjectModel.setSubjectId(UUID.randomUUID());
 		subjectModel.setDescription(DESCRIPTION);
 
-		Mockito.when(subjectRepository.findBySubject(DESCRIPTION))
+		Mockito.when(subjectRepository.findByDescription(DESCRIPTION))
 				.thenReturn(Optional.empty());
 		
 	}
@@ -51,7 +51,7 @@ class SubjectServiceTest {
 	@Test
 	void DoNotSaveSubjectWithTheSameName() {
 		Assertions.assertThrows(Exception.class, () -> {
-			subjectService.findBySubject(DESCRIPTION);
+			subjectService.findByDescription(DESCRIPTION);
 			 });
 		Assertions.assertNull(null, "Assunto já existe!");
 		
