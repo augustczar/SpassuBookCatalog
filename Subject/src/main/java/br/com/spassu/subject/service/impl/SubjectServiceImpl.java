@@ -30,7 +30,7 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public Optional<SubjectModel> findByDescription(String description) {
 		Optional<SubjectModel> existedSubject = subjectRepository.findByDescription(description);
-		return Optional.of(existedSubject.orElse(null));
+		return existedSubject;
 	}
 
 	@Override

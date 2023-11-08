@@ -45,7 +45,7 @@ public class SubjectController {
 	public ResponseEntity<Object> saveSubject(@RequestBody @Valid SubjectDto subjectDto) throws Exception {
 		var subjectDescription = subjectService.findByDescription(subjectDto.getDescription());
 		
-		if (subjectDescription.get().getDescription().isEmpty()) {
+		if (subjectDescription.isPresent()) {
 			log.warn("authorName {} you are already registered!", subjectDto.getDescription());
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: subjectDescription you are already registered!");
 		}

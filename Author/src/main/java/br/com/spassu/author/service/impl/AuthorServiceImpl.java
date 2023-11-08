@@ -23,7 +23,7 @@ public class AuthorServiceImpl implements AuthorService{
   	@Override
 	public Optional<AuthorModel> findByName(String name) {
 		Optional<AuthorModel> existedAuthor = authorRepository.findByName(name);
-		return Optional.of(existedAuthor.orElse(null));
+		return existedAuthor;
 	}
 
 	@Override

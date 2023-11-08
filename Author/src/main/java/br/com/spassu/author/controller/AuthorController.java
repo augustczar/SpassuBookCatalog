@@ -44,7 +44,7 @@ public class AuthorController {
 	public ResponseEntity<Object> saveBook(@RequestBody @Valid AuthorDto authorDto) throws Exception {
 		var authorName = authorService.findByName(authorDto.getName());
 	
-		if (authorName.get().getName().isEmpty()) {
+		if (authorName.isPresent()) {
 			log.warn("authorName {} you are already registered!", authorDto.getName());
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: authorName you are already registered!");
 		}
