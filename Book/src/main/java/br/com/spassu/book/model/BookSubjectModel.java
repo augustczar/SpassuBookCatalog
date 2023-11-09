@@ -27,18 +27,19 @@ import lombok.ToString;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
-@Table(name = "BOOK_AUTHOR")
-public class BookAuthorModel implements Serializable {
+@Table(name = "BOOK_SUBJECT")
+public class BookSubjectModel  implements Serializable {
 
-	private static final long serialVersionUID = 1477087652930270985L;
-	
+
+	private static final long serialVersionUID = -2668006808004197250L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	private BookModel bookAuthor;
+	private BookModel bookSubject;
 	
 	@Column(nullable = false)
-	private UUID authorId;
+	private UUID subjectId;
 }

@@ -56,8 +56,10 @@ public class BookModel implements Serializable{
 	private BigDecimal price;
 	
  	@JsonProperty(access = Access.WRITE_ONLY)
-	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "bookAuthor", fetch = FetchType.LAZY)
 	private Set<BookAuthorModel> bookAuthors;
 
-	
+ 	@JsonProperty(access = Access.WRITE_ONLY)
+	@OneToMany(mappedBy = "bookSubject", fetch = FetchType.LAZY)
+	private Set<BookSubjectModel> bookSubjects;
 }
