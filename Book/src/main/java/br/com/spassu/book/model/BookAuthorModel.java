@@ -1,8 +1,6 @@
-package br.com.spassu.author.model;
+package br.com.spassu.book.model;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,15 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,20 +27,18 @@ import lombok.ToString;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
-@Table(name = "AUTHOR")
-public class AuthorModel implements Serializable {
+@Table(name = "BOOK_AUTHOR")
+public class BookAuthorModel implements Serializable {
 
-	private static final long serialVersionUID = 1951223814151494644L;
-
+	private static final long serialVersionUID = 1477087652930270985L;
+	
 	@Id
-	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID id;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private BookModel book;
+	
+	@Column(nullable = false)
 	private UUID authorId;
-
-	@Column(nullable = false, unique = true, length = 40)
-	private String name;
-
-//	@JsonProperty(access = Access.WRITE_ONLY)
-//	@ManyToMany(fetch = FetchType.LAZY)
-//	private Set<> author;
 }

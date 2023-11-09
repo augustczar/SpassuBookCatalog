@@ -2,14 +2,20 @@ package br.com.spassu.book.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -48,4 +54,10 @@ public class BookModel implements Serializable{
 	
 	@Column(nullable = false)
 	private BigDecimal price;
+	
+ 	@JsonProperty(access = Access.WRITE_ONLY)
+	@OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+	private Set<BookAuthorModel> bookAuthors;
+
+	
 }
