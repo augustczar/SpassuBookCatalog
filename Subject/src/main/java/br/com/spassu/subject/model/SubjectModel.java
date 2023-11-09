@@ -1,14 +1,20 @@
 package br.com.spassu.subject.model;
 
 import java.io.Serializable;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -35,4 +41,8 @@ public class SubjectModel implements Serializable{
 	
 	@Column(nullable = false, unique = true, length = 20)
 	private String description;
+	
+ 	@JsonProperty(access = Access.WRITE_ONLY)
+	@OneToMany(mappedBy = "subjectBook", fetch = FetchType.LAZY)
+	private Set<SubjectBookModel> subjectBooks;
 }

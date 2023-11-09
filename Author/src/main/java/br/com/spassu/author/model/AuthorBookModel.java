@@ -1,4 +1,4 @@
-package br.com.spassu.book.model;
+package br.com.spassu.author.model;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -28,19 +28,19 @@ import lombok.ToString;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
-@Table(name = "BOOK_AUTHOR")
-public class BookAuthorModel implements Serializable {
-
-	private static final long serialVersionUID = 1477087652930270985L;
+@Table(name = "AUTHOR_BOOKS")
+public class AuthorBookModel implements Serializable {
+	
+	private static final long serialVersionUID = 2574953023208450411L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "bookId")
-	private BookModel bookAuthor;
+ 	@JoinColumn(name = "authorId")
+	private AuthorModel author;
 	
 	@Column(nullable = false)
-	private UUID authorId;
+	private UUID bookId;
 }
