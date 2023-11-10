@@ -53,13 +53,13 @@ class SubjectControllerTest {
 	
 	@Test
 	void subjectGetAllTest() throws Exception {
-		mockMvc.perform(get("/matters"))
+		mockMvc.perform(get("/subjects"))
 		.andExpect(status().isOk());
 	}
 
 	@Test
 	void mustFindSubjectById() throws JsonProcessingException, Exception {
-		mockMvc.perform(get("/matters/"+ subjectModel.getSubjectId() +"/search")
+		mockMvc.perform(get("/subjects/"+ subjectModel.getSubjectId() +"/search")
 				.contentType("application/json")
 				.content(objectMapper.writeValueAsString(subjectModel)))
 				.andExpect(status().isOk());
@@ -67,7 +67,7 @@ class SubjectControllerTest {
 	
 	@Test
 	 void subjectSaveTest() throws JsonProcessingException, Exception {
-		mockMvc.perform(post("/matters")
+		mockMvc.perform(post("/subjects")
 				.contentType("application/json")
 				.content(objectMapper.writeValueAsString(subjectModel)))
 				.andExpect(status().isOk());
@@ -75,7 +75,7 @@ class SubjectControllerTest {
 
 	@Test
 	void mustUpdateSubject() throws JsonProcessingException, Exception {
-		mockMvc.perform(put("/matters/"+ subjectModel.getSubjectId() +"/edit")
+		mockMvc.perform(put("/subjects/"+ subjectModel.getSubjectId() +"/edit")
 				.contentType("application/json")
 				.content(objectMapper.writeValueAsString(subjectModel)))
 				.andExpect(status().isOk());
@@ -83,7 +83,7 @@ class SubjectControllerTest {
 	
 	@Test
 	void mustDeleteSubject() throws JsonProcessingException, Exception {
-		mockMvc.perform(delete("/matters/"+ subjectModel.getSubjectId() +"/delete"))
+		mockMvc.perform(delete("/subjects/"+ subjectModel.getSubjectId() +"/delete"))
 				.andExpect(status().isOk());
 	}
 

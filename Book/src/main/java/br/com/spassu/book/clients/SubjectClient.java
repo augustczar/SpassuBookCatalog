@@ -22,7 +22,7 @@ public class SubjectClient {
 	
 	public SubjectDto getAllSubjectByBook(UUID bookId) {
 		List<SubjectDto> searchResult = null;
-		String url = REQUEST_URL + "/matters?bookId" + bookId;
+		String url = REQUEST_URL + "/subjects?bookId" + bookId;
 		
 		log.debug("Request URL : {} ", url);
 		log.info("Request URL : {} ", url);
@@ -32,10 +32,10 @@ public class SubjectClient {
 			log.debug("Response Number of Elements: {} ", searchResult.size());
 		} catch (HttpStatusCodeException e) {
 			
-			log.error("Error request / matters {}", e);
+			log.error("Error request / subjects {}", e);
 		}
 		
-		log.info("Ending request / matthers bookId {} ", bookId);
+		log.info("Ending request / subjects bookId {} ", bookId);
 		return null;
 	}
 }
