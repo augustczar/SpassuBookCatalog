@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.spassu.book.model.BookModel;
@@ -49,5 +50,10 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<BookModel> findAll() {
 		return bookRepository.findAll();
+	}
+
+	@Override
+	public List<BookModel> findAll(Specification<BookModel> spec) {
+		return bookRepository.findAll(spec);
 	}
 }

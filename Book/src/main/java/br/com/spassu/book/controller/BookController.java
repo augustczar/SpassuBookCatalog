@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.spassu.book.dtos.BookDto;
 import br.com.spassu.book.model.BookModel;
 import br.com.spassu.book.service.BookService;
+import br.com.spassu.book.specifications.SpecificationTemplate;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -37,8 +39,14 @@ public class BookController {
 	
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<BookModel>> getAllBooks() {
+	public ResponseEntity<List<BookModel>> getAllBooks(SpecificationTemplate.BookSpec spec, 
+											@RequestParam(required = false) UUID authorId) {
+		
+		if (authorId != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll(SpecificationTemplate.bookAuthorId(authorId).and(spec)));
+		} 
 		return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll());
+		
 	}
 
 	@PostMapping

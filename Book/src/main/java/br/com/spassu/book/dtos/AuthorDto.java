@@ -1,6 +1,6 @@
 package br.com.spassu.book.dtos;
 
-import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -17,6 +17,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class AuthorDto {
 
-	@NotBlank
+	private UUID authorId;
+
 	private String name;
 }

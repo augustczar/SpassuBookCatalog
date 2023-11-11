@@ -1,5 +1,7 @@
 package br.com.spassu.book.dtos;
 
+import java.util.UUID;
+
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class SubjectDto {
 
+	private UUID subjectId;
+	
 	@NotBlank
 	private String description;
 }
