@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.spassu.subject.model.SubjectModel;
@@ -46,6 +47,11 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public List<SubjectModel> findAll() {
 		return subjectRepository.findAll();
+	}
+
+	@Override
+	public List<SubjectModel> findAll(Specification<SubjectModel> subjectBookId) {
+		return subjectRepository.findAll(subjectBookId);
 	}
 
 }

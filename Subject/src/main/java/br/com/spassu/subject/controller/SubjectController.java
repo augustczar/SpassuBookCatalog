@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.spassu.subject.dtos.SubjectDto;
 import br.com.spassu.subject.model.SubjectModel;
 import br.com.spassu.subject.service.SubjectService;
+import br.com.spassu.subject.specifications.SpecificationTemplate;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -37,8 +39,13 @@ public class SubjectController {
 
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<SubjectModel>> getAllSubject() {
-		return ResponseEntity.status(HttpStatus.OK).body(subjectService.findAll());
+	public ResponseEntity<List<SubjectModel>> getAllSubject(@RequestParam(required = false) UUID bookId) {
+	
+		if (bookId != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(subjectService.findAll(SpecificationTemplate.subjectBookId(bookId)));			
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(subjectService.findAll());
+		}
 	}
 
 	@PostMapping

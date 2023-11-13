@@ -14,21 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import br.com.spassu.book.clients.AuthorClient;
-import br.com.spassu.book.dtos.AuthorDto;
+import br.com.spassu.book.clients.SubjectClient;
+import br.com.spassu.book.dtos.SubjectDto;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/books")
-public class BookAuthorController {
-	
-	@Autowired
-	AuthorClient authorClient;
+public class BookSubjectController {
 
-	@GetMapping("/{bookId}/authors")
-	public ResponseEntity<List<AuthorDto>> getAllBooksAuthor(@PathVariable(value = "bookId") UUID bookId) throws JsonProcessingException {
-		return ResponseEntity.status(HttpStatus.OK).body(authorClient.getAllAutorByBook(bookId));
+	@Autowired
+	SubjectClient subjectClient;
+
+	@GetMapping("/{bookId}/subjects")
+	public ResponseEntity<List<SubjectDto>> getAllBooksSubject(@PathVariable(value = "bookId") UUID bookId) throws JsonProcessingException {
+		return ResponseEntity.status(HttpStatus.OK).body(subjectClient.getAllSubjectByBook(bookId));
 	}
 }

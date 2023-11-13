@@ -34,10 +34,11 @@ public class SubjectBookModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "bookId")
-	private SubjectModel subjectBook;
-	
 	@Column(nullable = false)
-	private UUID subjectId;
+	private UUID bookId;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "subjectId")
+	private SubjectModel subjectBook;	
+	
 }

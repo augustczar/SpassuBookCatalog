@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.jpa.domain.Specification;
+
 import br.com.spassu.subject.model.SubjectModel;
 
 public interface SubjectService {
@@ -17,5 +19,7 @@ public interface SubjectService {
 	void delete(SubjectModel subjectModel);
 
 	List<SubjectModel> findAll();
+
+	List<SubjectModel> findAll(Specification<SubjectModel> subjectBookId);
 
 }
