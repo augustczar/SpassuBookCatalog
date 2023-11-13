@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.spassu.author.dtos.AuthorDto;
 import br.com.spassu.author.model.AuthorModel;
 import br.com.spassu.author.service.AuthorService;
+import br.com.spassu.author.specifications.SpecificationTemplate;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -35,9 +37,14 @@ public class AuthorController {
 	AuthorService authorService;
 	
  	@GetMapping
-	public ResponseEntity<List<AuthorModel>> getAllAuthors() {
-			
-		return ResponseEntity.status(HttpStatus.OK).body(authorService.findAll());
+	public ResponseEntity<List<AuthorModel>> getAllAuthors(@RequestParam(required = false) UUID bookId) {
+	
+		if (bookId != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(authorService.findAll(SpecificationTemplate.authorBookId(bookId)));			
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(authorService.findAll());
+		}
+		
 	}
 
 	@PostMapping
@@ -52,7 +59,7 @@ public class AuthorController {
 		var authorModel = new AuthorModel();
 		BeanUtils.copyProperties(authorDto, authorModel);
 		authorService.save(authorModel);
-		log.debug("POST saveCourse authorId saved {} ", authorModel.getAuthorId());
+		log.debug("POST saveAuthor authorId saved {} ", authorModel.getAuthorId());
         log.info("Author saved successfully authorId {} ", authorModel.getAuthorId());
 		return ResponseEntity.status(HttpStatus.CREATED).body(authorModel);
 	}

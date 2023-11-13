@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.com.spassu.author.model.AuthorModel;
@@ -46,6 +47,11 @@ public class AuthorServiceImpl implements AuthorService{
 	@Override
 	public void delete(AuthorModel authorModel) {
 		authorRepository.delete(authorModel);
+	}
+
+	@Override
+	public List<AuthorModel> findAll(Specification<AuthorModel> spec) {
+		return authorRepository.findAll(spec);
 	}
 
 	@Override

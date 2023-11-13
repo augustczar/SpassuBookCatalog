@@ -59,7 +59,9 @@ public class BookModel implements Serializable{
 	@OneToMany(mappedBy = "bookAuthor", fetch = FetchType.LAZY)
 	private Set<BookAuthorModel> bookAuthors;
 
- 	@JsonProperty(access = Access.WRITE_ONLY)
+/*
+ *  	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "bookSubject", fetch = FetchType.LAZY)
 	private Set<BookSubjectModel> bookSubjects;
+ */
 }

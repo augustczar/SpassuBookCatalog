@@ -39,13 +39,14 @@ public class BookController {
 	
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<BookModel>> getAllBooks(SpecificationTemplate.BookSpec spec, 
-											@RequestParam(required = false) UUID authorId) {
-		
+	public ResponseEntity<List<BookModel>> getAllBooks(@RequestParam(required = false) UUID authorId) {
+		List<BookModel> bookModels;
 		if (authorId != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll(SpecificationTemplate.bookAuthorId(authorId).and(spec)));
-		} 
-		return ResponseEntity.status(HttpStatus.OK).body(bookService.findAll());
+			 bookModels =  bookService.findAll(SpecificationTemplate.bookAuthorId(authorId));
+		}else {
+			bookModels = bookService.findAll();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(bookModels);
 		
 	}
 

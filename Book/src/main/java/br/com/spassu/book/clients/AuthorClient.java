@@ -1,9 +1,12 @@
-package br.com.spassu.book.clients;
+	package br.com.spassu.book.clients;
 
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
@@ -23,32 +26,33 @@ public class AuthorClient {
 
 	String REQUEST_URL = "Http://localhost:8087";
 	
-	List<AuthorDto> result;
+	ResponseEntity<List<AuthorDto>> result;
 	
 	Gson gson = new Gson();
 	
 	public List<AuthorDto> getAllAutorByBook(UUID bookId){
-		List<AuthorDto> searchResult = null;
-		String url = REQUEST_URL + "/authors?bookId" + bookId;
+
+		String url = REQUEST_URL + "/authors?bookId=" + bookId;
 		
 		log.debug("Request URL : {} ", url);
 		log.info("Request URL : {} ", url);
 		
 		try {
-
 			restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter()); 
-			
-			result = restTemplate.getForObject(url, List.class);
 
-			 searchResult = result;
+			ParameterizedTypeReference<List<AuthorDto>> responseType = new ParameterizedTypeReference<List<AuthorDto>>() {};
+		
+			result = restTemplate.exchange(url, HttpMethod.GET, null, responseType);
+
+			result.getBody();
 			
-			log.debug("Response Number of Elements: {} ", searchResult.size());
+			log.debug("Response Number of Elements: {} ", result.getBody().size());
 		} catch (HttpStatusCodeException e) {
 			
 			log.error("Error request / auhtors {}", e);
 		}
 		
 		log.info("Ending request / authors bookId {} ", bookId);
-		return result;// (AuthorDto) result.getBody().toString();
+		return  result.getBody();
 	}
 }

@@ -9,15 +9,16 @@ import org.springframework.data.jpa.domain.Specification;
 import br.com.spassu.book.model.BookAuthorModel;
 import br.com.spassu.book.model.BookModel;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
+import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.And;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.Spec;
 
 public class SpecificationTemplate {
 	
 	@And({
-		@Spec(path = "publishingCompany", spec = Like.class),
-		@Spec(path = "yearPublication", spec = Like.class),
-		@Spec(path = "title", spec = Like.class),
+		@Spec(path = "title", spec = LikeIgnoreCase.class),
+		@Spec(path = "publishingCompany", spec = LikeIgnoreCase.class),
+		@Spec(path = "yearPublication", spec = LikeIgnoreCase.class)
 	})
 
 	public interface BookSpec extends Specification<BookModel>{}

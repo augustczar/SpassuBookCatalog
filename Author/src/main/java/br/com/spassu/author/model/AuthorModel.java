@@ -44,6 +44,7 @@ public class AuthorModel implements Serializable {
 	@Column(nullable = false, unique = true, length = 40)
 	private String name;
 
+	@ToString.Exclude
  	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
 	private Set<AuthorBookModel> authorBooks;

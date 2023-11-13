@@ -37,10 +37,11 @@ public class AuthorBookModel implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 	
+	@Column(nullable = false)
+	private UUID bookId;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
  	@JoinColumn(name = "authorId")
 	private AuthorModel author;
 	
-	@Column(nullable = false)
-	private UUID bookId;
 }
