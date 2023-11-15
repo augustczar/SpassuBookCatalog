@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -55,13 +56,14 @@ public class BookModel implements Serializable{
 	@Column(nullable = false)
 	private BigDecimal price;
 	
+	@Transient
  	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "bookAuthor", fetch = FetchType.LAZY)
 	private Set<BookAuthorModel> bookAuthors;
 
-/*
- *  	@JsonProperty(access = Access.WRITE_ONLY)
+	@Transient
+  	@JsonProperty(access = Access.WRITE_ONLY)
 	@OneToMany(mappedBy = "bookSubject", fetch = FetchType.LAZY)
 	private Set<BookSubjectModel> bookSubjects;
- */
+
 }
