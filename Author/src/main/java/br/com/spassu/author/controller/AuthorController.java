@@ -52,8 +52,8 @@ public class AuthorController {
 		var authorName = authorService.findByName(authorDto.getName());
 	
 		if (authorName.isPresent()) {
-			log.warn("authorName {} you are already registered!", authorDto.getName());
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: authorName you are already registered!");
+			log.warn("authorName {} this author is already registered!", authorDto.getName());
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: authorName, this author is already registered!");
 		}
 
 		var authorModel = new AuthorModel();

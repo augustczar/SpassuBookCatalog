@@ -53,8 +53,8 @@ public class SubjectController {
 		var subjectDescription = subjectService.findByDescription(subjectDto.getDescription());
 		
 		if (subjectDescription.isPresent()) {
-			log.warn("authorName {} you are already registered!", subjectDto.getDescription());
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: subjectDescription you are already registered!");
+			log.warn("authorName {} this subject is already registered!", subjectDto.getDescription());
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: subjectDescription, this subject is already registered!");
 		}
 
 		var subjectModel = new SubjectModel();

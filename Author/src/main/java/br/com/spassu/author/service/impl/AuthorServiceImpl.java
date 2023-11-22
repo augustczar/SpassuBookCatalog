@@ -29,12 +29,6 @@ public class AuthorServiceImpl implements AuthorService{
 
 	@Override
 	public AuthorModel save(AuthorModel authorModel) throws Exception {
-		Optional<AuthorModel> existedAuthor  = authorRepository.findByName(authorModel.getName()); 
-		
-		if (existedAuthor.isPresent()) {
-			throw new Exception("Author já existe!", null);
-		}
-		
 		return authorRepository.save(authorModel);
 	}
 

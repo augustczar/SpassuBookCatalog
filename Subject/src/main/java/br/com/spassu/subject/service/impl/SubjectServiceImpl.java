@@ -20,11 +20,6 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Override
 	public SubjectModel save(SubjectModel subjectModel) throws Exception {
-		Optional<SubjectModel> existedSubject  = subjectRepository.findByDescription(subjectModel.getDescription()); 
-		
-		if (existedSubject.isPresent()) {
-			throw new Exception("Subject já existe!", null);
-		}
 		return  subjectRepository.save(subjectModel);
 	}
 

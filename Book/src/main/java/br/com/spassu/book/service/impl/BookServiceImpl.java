@@ -20,12 +20,6 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public BookModel save(BookModel bookModel) throws Exception {
-		Optional<BookModel> existedBook = bookRepository.findByTitle(bookModel.getTitle());
-		
-		if(existedBook.isPresent()) {
-			throw new Exception("Livro já existe!", null);
-		}
-		
 		return bookRepository.save(bookModel);
 	}
 

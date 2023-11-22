@@ -55,8 +55,8 @@ public class BookController {
 		var bookTitle = bookService.findByTitle(bookDto.getTitle());
 		
 		if (bookTitle.isPresent()) {
-			log.warn("bookTitle {} you are already registered!", bookDto.getTitle());
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: bookName you are already registered!");
+			log.warn("bookTitle {} this book is already registered!", bookDto.getTitle());
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: bookName, this book is already registered!");
 		}
 
 		var bookModel = new BookModel();
