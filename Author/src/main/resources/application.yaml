@@ -10,7 +10,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-      dialect: org.hobernate.dialect.PostgreSQLDialect
+      dialect: org.hibernate.dialect.PostgreSQLDialect
     jdbc: 
         lob.non-contextual-creation: true
         type:
